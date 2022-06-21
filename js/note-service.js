@@ -15,25 +15,20 @@ var NoteService = {
         var html = "";
         for(let i = 0; i < data.length; i++){
           html += `
-          <div class="container">
-                  <div class="row">
-                      <div class="col-lg-6 mb-4">
-            <div class="card" style="width: 18rem;">
+          <div class="col-lg-3">
+            <div class="card" style="background-color:`+data[i].color+`">
               <img class="card-img-top" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="Card image cap">
               <div class="card-body">
-                <h5 class="card-title">`+ data[i].first_name +`</h5>
-                <p class="card-text">`+ data[i].last_name +`</p>
-                <p class="card-text">`+ data[i].country +`</p>
+              <h5 class="card-title">`+ data[i].first_name +`</h5>
+              <p class="card-text">`+ data[i].last_name +`</p>
+              <p class="card-text">`+ data[i].country +`</p>
                 <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-primary note-button" onclick="NoteService.get(`+data[i].id+`)">Update</button>
-                  <button type="button" class="btn btn-danger note-button" onclick="NoteService.delete(`+data[i].id+`)">Delete</button>
+                <button type="button" class="btn btn-primary note-button" onclick="NoteService.get(`+data[i].id+`)">Update</button>
+                <button type="button" class="btn btn-danger note-button" onclick="NoteService.delete(`+data[i].id+`)">Delete</button>
                 </div>
               </div>
             </div>
-            </div>
           </div>
-        </div>
-
           `;
         }
         $("#note-list").html(html);
