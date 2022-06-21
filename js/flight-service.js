@@ -2,7 +2,7 @@ var FlightService = {
 
   add: function(design){
     $.ajax({
-      url: 'rest/tableone',
+      url: 'rest/flights',
       type: 'POST',
       data: JSON.stringify(design),
       contentType: "application/json",
@@ -19,8 +19,8 @@ var FlightService = {
   },
 
   list_by_note_id: function(note_id){
-    $("#notes-todos").html('loading ...');
-    $.get("rest/notes/"+note_id+"/tableone", function(data) {
+    $("#notes-flights").html('loading ...');
+    $.get("rest/notes/"+note_id+"/flights", function(data) {
       var html = "";
       for(let i = 0; i < data.length; i++){
         html += `<div class="list-group-item note-flight-`+data[i].id+`">
@@ -53,7 +53,7 @@ var FlightService = {
     $('.note--'+id)flights.remove();
     toastr.info("Deleting in background ...");
     $.ajax({
-      url: 'rest/tableone/'+id,
+      url: 'rest/flights/'+id,
       type: 'DELETE',
       success: function(result) {
         toastr.success("Deleted !");

@@ -9,8 +9,8 @@ class FlightDao extends BaseDao{
     parent::__construct("flights");
   }
 
-  public function get_todos_by_note_id($note_id){
-    return $this->query("SELECT * FROM tableone WHERE note_id = :note_id", ['note_id' => $note_id]);
+  public function get_flights_by_note_id($note_id){
+    return $this->query("SELECT * FROM flights WHERE note_id = :note_id", ['note_id' => $note_id]);
   }
 }
 

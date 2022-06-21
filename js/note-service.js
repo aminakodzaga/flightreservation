@@ -15,19 +15,25 @@ var NoteService = {
         var html = "";
         for(let i = 0; i < data.length; i++){
           html += `
-          <div class="col">
-            <div class="card" style="style="background-color:`+data[i].color+`">
+          <div class="container">
+                  <div class="row">
+                      <div class="col-lg-6 mb-4">
+            <div class="card" style="width: 18rem;">
               <img class="card-img-top" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="Card image cap">
-              <div class="card-body font-monospace text-center">
-                <h5 class="card-title">`+ data[i].name +`</h5>
-                <p class="card-text">`+ data[i].description +`</p>
+              <div class="card-body">
+                <h5 class="card-title">`+ data[i].first_name +`</h5>
+                <p class="card-text">`+ data[i].last_name +`</p>
+                <p class="card-text">`+ data[i].country +`</p>
                 <div class="btn-group" role="group">
                   <button type="button" class="btn btn-primary note-button" onclick="NoteService.get(`+data[i].id+`)">Update</button>
                   <button type="button" class="btn btn-danger note-button" onclick="NoteService.delete(`+data[i].id+`)">Delete</button>
                 </div>
               </div>
             </div>
+            </div>
           </div>
+        </div>
+
           `;
         }
         $("#note-list").html(html);
@@ -37,9 +43,9 @@ var NoteService = {
     get: function(id){
       $('.note-button').attr('disabled', true);
       $.get('rest/notes/'+id, function(data){
-        $("#description").val(data.description);
+        $("#first_name").val(data.first_name);
         $("#id").val(data.id);
-        $("#created").val(data.created);
+        $("#country").val(data.country);
         $("#exampleModal").modal("show");
         $('.flight-button').attr('disabled', false);
       })
@@ -64,8 +70,8 @@ var NoteService = {
       $('.save-note-button').attr('disabled', true);
       var flight = {};
 
-      flight.description = $('#description').val();
-      flight.created = $('#created').val();
+      flight.first_name = $('#first_name').val();
+      flight.country = $('#country').val();
 
       $.ajax({
         url: 'rest/notes/'+$('#id').val(),
